@@ -54,3 +54,34 @@ For actual security needs:
     *   *First time:* It should prompt for PIN setup. Set your PIN. The page will reload.
     *   *Subsequent times:* It should show the fake "This site can't be reached" page. Type your 4-digit PIN and press Enter to reveal the actual page.
 6.  **Remember the limitations described above.**
+
+---
+
+## Optional: Making Your Local Copy Less Obvious
+
+If you want the extension to be less noticeable in your browser's UI (toolbar, extensions list) *after* you've loaded it, you can modify these files in your local folder **before** loading it as an unpacked extension (or reload the extension after making changes):
+
+1.  **Change the Icons:**
+    *   **Why:** The default icons might be recognizable. Generic or blank icons blend in better.
+    *   **How:** Replace the `icon48.png` and `icon128.png` files with different images.
+        *   Use completely **transparent (blank)** PNGs of the correct sizes (48x48 and 128x128 pixels).
+        *   Use very **generic icons** that look like system utilities (e.g., a plain gear ⚙️, a document icon 📄, a settings symbol 🔧, a simple circle/square). Avoid anything suggesting "lock" or "hide".
+        *   Ensure the filenames remain `icon48.png` and `icon128.png`.
+
+2.  **Edit the Manifest File (`manifest.json`):**
+    *   **Why:** The name and description appear in the browser's extensions list and potentially on the toolbar icon's tooltip.
+    *   **How:** Open `manifest.json` in a text editor.
+        *   Change the `"name"` value from `"Obscure"` to something mundane or technical, e.g., `"Page Render Util"`, `"DOM State Handler"`, `"UI Helper"`, `"Content Display Manager"`, or even just `" "` (a single space).
+        *   Change the `"description"` value to something vague, like `"Manages initial content display."`, `"Utility for modifying document rendering."`, or just `" "` (a single space).
+        *   **Important:** After saving changes to `manifest.json`, you **must reload** the extension in your browser (`chrome://extensions/` -> find the extension -> click the reload icon 🔄, or remove and re-load it).
+
+3.  **Hide from Toolbar (Browser Setting):**
+    *   **Why:** Removes the icon from immediate view.
+    *   **How:** This is a browser feature, not a code change. In Chrome/Edge, right-click the extension icon in the toolbar (you might need to click the puzzle piece icon first) and choose "Unpin" or "Hide from Toolbar". In Firefox, right-click and choose "Remove from Toolbar". You can still access the extension's options via the main Extensions management page.
+
+4.  **Remove Console Logs (Optional, Advanced):**
+    *   **Why:** Prevents the extension from printing messages like "PIN Hider: Target page detected..." to the browser's developer console (F12), which could look suspicious if someone is watching you debug something else.
+    *   **How:** Open `content.js` and `options.js`. Search for lines starting with `console.log(`, `console.warn(`, or `console.error(`. You can either delete these lines or comment them out by adding `//` at the beginning of each line.
+    *   **Caution:** Removing logs makes it much harder to troubleshoot if the extension stops working correctly. Keep a copy of the original files if you do this.
+
+**Reminder:** These modifications only change how the extension *appears* in the browser interface. They do **not** enhance its (non-existent) security or make it harder to bypass via Developer Tools.
