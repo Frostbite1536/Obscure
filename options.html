@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Obscure Options</title>
+  <meta charset="UTF-8">
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 20px; max-width: 600px; margin: 20px auto; } /* Wider max-width */
+    label { display: block; margin-bottom: 5px; font-weight: bold; }
+    /* MODIFIED: Style textarea */
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      min-height: 100px; /* Give it some initial height */
+      font-family: monospace; /* Good for patterns */
+      resize: vertical; /* Allow vertical resize */
+    }
+    button { padding: 10px 15px; cursor: pointer; background-color: #007bff; color: white; border: none; border-radius: 4px;}
+    button:hover { background-color: #0056b3; }
+    #status { margin-top: 15px; font-weight: bold; color: green; min-height: 1.2em;}
+    .examples { background-color: #f8f9fa; border: 1px solid #dee2e6; padding: 15px; border-radius: 4px; margin-top: 20px; font-size: 0.9em; }
+    .examples code { background-color: #e9ecef; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+    .examples ul { padding-left: 20px; margin-top: 10px; margin-bottom: 5px;}
+    .examples li { margin-bottom: 5px; }
+    .warning { color: #856404; background-color: #fff3cd; border: 1px solid #ffeeba; padding: 10px; border-radius: 4px; margin-top: 15px; font-size: 0.9em;}
+  </style>
+</head>
+<body>
+  <h1>Obscure Settings</h1>
+
+  <p>Enter the URL patterns (one per line) for the pages you want to hide. The page will show a fake "site can't be reached" message. Type your 4-digit PIN anywhere and press Enter to unlock.</p>
+
+  <label for="url-patterns-input">Target URL Patterns:</label>
+  <!-- MODIFIED: Changed input to textarea -->
+  <textarea id="url-patterns-input" placeholder="e.g., https://mail.google.com/*
+*://*.reddit.com/*"></textarea>
+
+  <div class="examples">
+    <strong>Pattern Examples (Use one per line above):</strong>
+    <ul>
+      <li><code>https://www.example.com/private/page.html</code></li>
+      <li><code>https://www.example.com/private/*</code></li>
+      <li><code>*://*.google.com/*</code></li>
+      <li><code>*://localhost:*/</code>*</li>
+      <li><code>*://*/*?user=secret*</code></li>
+    </ul>
+     Use <code>*</code> as a wildcard. Use <code>*://</code> to match any scheme.
+  </div>
+
+
+  <button id="save-button">Save Patterns</button>
+  <div id="status"></div>
+
+  <script src="options.js"></script>
+</body>
+</html>

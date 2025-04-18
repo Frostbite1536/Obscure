@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Obscure",
+  "version": "1.6",
+  "description": "Visually hides specific web pages behind a PIN prompt (mimics error page). NOT a security tool.",
+  "permissions": [
+    "storage"
+  ],
+  "options_page": "options.html",
+  "action": {
+     "default_title": "Obscure Options"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

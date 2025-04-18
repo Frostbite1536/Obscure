@@ -1,0 +1,160 @@
+/* --- Base Setup Overlay Styles --- */
+#pin-hider-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* Ensure solid background */
+  background-color: #f0f0f0; /* Solid light gray background */
+  z-index: 2147483647; /* Max z-index */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, sans-serif;
+  visibility: visible !important; /* Ensure it's visible */
+  box-sizing: border-box; /* Include padding in dimensions */
+  padding: 20px; /* Add padding for smaller screens */
+
+  /* <<< ADDED LINES >>> */
+  opacity: 1 !important; /* Override opacity from html element */
+  pointer-events: auto !important; /* Allow interaction with overlay */
+  /* <<< END ADDED LINES >>> */
+}
+
+#pin-hider-box {
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  border: 1px solid #ddd; /* Subtle border */
+  min-width: 300px;
+  max-width: 90%; /* Prevent overflow on small screens */
+}
+
+#pin-hider-box h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.4em; /* Slightly larger heading */
+}
+
+#pin-hider-box p {
+    color: #555;
+    font-size: 0.9em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style inputs */
+#pin-hider-box input[type="password"] {
+  padding: 10px;
+  font-size: 1.8em;
+  text-align: center;
+  width: 150px; /* Slightly wider input */
+  margin: 5px auto 15px auto;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  letter-spacing: 0.3em; /* Spacing for PIN digits */
+  box-sizing: border-box; /* Include padding/border in width */
+  /* Use modern autocomplete hint */
+  autocomplete: "new-password";
+}
+
+/* Style buttons */
+#pin-hider-box button {
+  padding: 10px 25px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+}
+
+#pin-hider-box button:hover {
+  background-color: #0056b3;
+}
+
+/* Error message styling */
+.pin-error-message {
+  color: #dc3545; /* Bootstrap danger color */
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-top: 10px;
+  min-height: 1.2em; /* Prevent layout shift */
+}
+
+/* Warning text styling */
+.pin-warning {
+  font-size: 0.8em !important;
+  color: #6c757d !important; /* Bootstrap secondary text color */
+  margin-top: 25px !important;
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+/* --- Fake Error Overlay Styles --- */
+#pin-hider-error-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff; /* Solid white background */
+  z-index: 2147483647; /* Max z-index */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #5f6368; /* Google-like grey text color */
+  visibility: visible !important; /* Ensure it's visible */
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+
+  /* <<< ADDED LINES >>> */
+  opacity: 1 !important; /* Override opacity from html element */
+  pointer-events: auto !important; /* Allow interaction with overlay */
+  /* <<< END ADDED LINES >>> */
+}
+
+#pin-hider-error-content {
+  max-width: 500px;
+}
+
+#pin-hider-error-overlay h1 {
+  font-size: 1.8em; /* Adjust as needed */
+  color: #202124; /* Darker grey for heading */
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+#pin-hider-error-overlay p {
+  font-size: 1em; /* Adjust as needed */
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+#pin-hider-error-overlay .error-code {
+  font-size: 0.9em;
+  color: #70757a; /* Lighter grey for error code */
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+
+/* Simple shake animation (can be used for both overlays on error) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); } /* More vibrations */
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.3s ease-in-out;
+}
